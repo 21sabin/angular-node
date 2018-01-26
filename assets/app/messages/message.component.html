@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+        
+            <div class="panel-heading">
+                <h3>{{message.content}} </h3>
+            </div>
+            <div class="panel-body">
+                {{message.username}}
+                <div class="config">
+                    <a (click)="onEdit()">Edit</a>
+                    <a (click)="onDelete(id)">Delete</a>
+                </div>
+            </div>
+    </div>
