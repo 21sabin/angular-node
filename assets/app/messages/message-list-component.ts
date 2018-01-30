@@ -5,11 +5,11 @@ import {MessageService} from './message.service';
     selector:"app-message-list",
     template:`
     <app-message [message]="message"
-    (onEditClicked)="content=$event"
    *ngFor="let message of messages"></app-message>
-
     `
 })
+
+//  (onEditClicked)="content=$event"
 export class MessageListComponent{
     messages:Message[];
     constructor(private messageService:MessageService){ 
@@ -20,9 +20,11 @@ export class MessageListComponent{
         // console.log("messagelist",this.messages);
         this.messageService.getMessage()
         .subscribe(
-            data=>this.messages=data,
-            error=>console.error(error)
+            (messages:Message[])=>{
+                this.messages=messages
+            }
         )
+        
     }
 
     

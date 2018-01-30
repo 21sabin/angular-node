@@ -7,7 +7,7 @@ import {HttpModule} from '@angular/http';
 import { AppComponent } from "./app.component";
 import {MessageComponent} from './messages/message.component';
 import { MessageListComponent } from './messages/message-list-component';
-import {MessageInputComponent} from './messages/message-input-component';
+import {MessageInputComponent} from './messages/message-input.component';
 import {MessageService} from './messages/message.service';
 import {SignupComponent} from './auth/signup.component';
 import { MessagesComponent } from './messages/messages.component';

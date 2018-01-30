@@ -4,7 +4,8 @@ import {Component} from  '@angular/core';
     selector:'app-messages',
     template:`
     <app-input-component></app-input-component>
-<hr>
+    <br>
+    <hr>
   <app-message-list></app-message-list>
 
     `

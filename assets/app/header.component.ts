@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
         <li role="presentation" routerLinkActive="active"><a [routerLink]="['/auth']">Authentication</a></li>
       
     </ul>
+    <br>
          
     </div>
         

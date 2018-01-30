@@ -41,4 +41,64 @@ router.post("/",(req,res,next)=>{
    })
 });
 
+
+router.patch("/:id",(req,res,next)=>{
+    Message.findById(req.params.id,(err,message)=>{
+        if(err){
+            res.status(500).json({
+                title:"error occured",
+                error:err
+            })
+        }
+        if(!message){
+            res.status(500).json({
+                title:"A message not found",
+                error:{message:"message not found"}
+            })
+        }
+        message.content=req.body.content;
+        message.save((err,result)=>{
+            if(err){
+               return res.status(400).json({
+                    title:"an error occured",
+                    error:err
+                })
+            }
+            res.status(200).json({
+                title:"saved message",
+                obj:message
+            })
+        })
+    })
+})
+
+router.delete("/:id",(req,res,next)=>{
+    Message.findById(req.params.id,(err,message)=>{
+        if(err){
+            res.status(500).json({
+                title:"error occured",
+                error:err
+            })
+        }
+        if(!message){
+            res.status(500).json({
+                title:"A message not found",
+                error:{message:"message not found"}
+            })
+        }
+        message.remove((err,result)=>{
+            if(err){
+               return res.status(400).json({
+                    title:"an error occured",
+                    error:err
+                })
+            }
+            res.status(200).json({
+                title:"deleted message",
+                obj:message
+            })
+        })
+    })
+})
+
 module.exports=router;
