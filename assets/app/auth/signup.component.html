@@ -1,30 +1,41 @@
-<h1>Signup</h1>
-
-<form [formGroup]="myForm" (ngSubmit)="onsubmit()">
-
-    <div class="form-group">
-        <label>Firstname</label>
-        <input type="text" id="firstname" formControlName="firstname" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label>Lastname</label>
-        <input type="text" id="lastname" formControlName="lastname" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" id="email" formControlName="email"  class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label>password</label>
-        <input type="password" id="password" formControlName="password"  class="form-control">
-    </div>
-
-    <div class="form-group">
-       <button type="submit"  class="btn btn-primary" >submit</button>
-    </div>
-
-</form>
-<!-- // [disabled]="!myForm.valid" -->
+<div class="col-md-8 col-md-offset-2">
+    <h1>Sign Up</h1>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+                    type="text"
+                    id="firstName"
+                    class="form-control"
+                    formControlName="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+                    type="text"
+                    id="lastName"
+                    class="form-control"
+                    formControlName="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Mail</label>
+            <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    formControlName="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    formControlName="password">
+        </div>
+        <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!myForm.valid">Submit</button>
+    </form>
+</div>

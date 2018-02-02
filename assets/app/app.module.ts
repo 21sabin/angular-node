@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 
 
 import {routing} from './app.routes';
+import { AuthService } from './auth/auth.service';
 
 
 
@@ -40,7 +41,7 @@ import {routing} from './app.routes';
     ],
     imports: [BrowserModule,FormsModule,routing,ReactiveFormsModule,HttpModule],
     bootstrap: [AppComponent],
-    providers:[MessageService]
+    providers:[AuthService,MessageService]
 })
 export class AppModule {
 

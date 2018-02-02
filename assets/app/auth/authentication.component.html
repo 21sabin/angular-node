@@ -1,7 +1,8 @@
 <br>
 <ul class="nav nav-pills">
-    <li role="presentation" routerLinkActive="active"><a [routerLink]="['signin']" >signin</a></li>
+    <li role="presentation"   *ngIf="!isLoggedIn()" routerLinkActive="active"><a [routerLink]="['signin']" >signin</a></li>
     <li role="presentation" routerLinkActive="active"><a [routerLink]="['signup']">signup</a></li>
+    <li role="presentation" *ngIf="isLoggedIn()"  routerLinkActive="active"><a [routerLink]="['logout']">Logout</a></li>
   
 </ul>
 

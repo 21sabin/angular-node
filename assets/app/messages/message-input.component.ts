@@ -28,7 +28,7 @@ export class MessageInputComponent implements OnInit{
         const message=new Message(form.value.content,"sabin","dfd","fd");
         this.messageService.addMessage(message)
         .subscribe(
-          data=>console.log("new data",data),
+          data=>console.log(data),
           error=>console.error(error)
           );
       }

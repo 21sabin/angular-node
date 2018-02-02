@@ -1,6 +1,9 @@
 const express=require("express");
 const router=express.Router();
 var Message=require("./../model/message");
+const jwt=require('jsonwebtoken');
+
+const User=require('./../model/user')
 
 
 router.get("/",(req,res,next)=>{
@@ -22,22 +25,63 @@ router.get("/",(req,res,next)=>{
 
 })
 
-router.post("/",(req,res,next)=>{
-    let message=new Message({
-        content:req.body.content
-    })
-   message.save((err,result)=>{
+// router.use('/',(req,res,next)=>{
+//    jwt.verify(req.query.token,'secret',(err,decoded)=>{
+//     if(err){
+//         return res.status(401).json({
+//             message:'Not authorized',
+//             err:err
+//         })
+//     }
+//     next();
+//    })
+// })
+
+//This code is executed for every request to the router
+router.use(function(req,res,next){
+    jwt.verify(req.query.token,'secret',(err,decoded)=>{
         if(err){
-           return  res.status(500).json({
-                title:"message is not cereated",
+           return res.status(401).json({
+                message:'not authorized',
                 error:err
             })
         }
-        
-        res.status(201).json({
-            title:"saved message",
-            obj:result
-        })
+        next();
+    })
+});
+
+router.post("/",(req,res,next)=>{
+    var decoded=jwt.decode(req.query.token);
+     User.findById(decoded.user._id,(err,user)=>{
+                if(err){
+                    return  res.status(500).json({
+                        title:"An error occured",
+                        error:err
+                    })
+                }
+                
+                let message=new Message({
+                    content:req.body.content,
+                    user:user
+                });
+            
+                message.save((err,result)=>{
+                    if(err){
+                    return  res.status(500).json({
+                            title:"message is not cereated",
+                            error:err
+                        });
+                    }
+                    user.messages.push(result);
+                    user.save();
+                    
+                    res.status(201).json({
+                        title:"saved message",
+                        obj:result
+                    })
+
+            })
+  
    })
 });
 

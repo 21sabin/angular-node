@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose=require("mongoose")
 
 var messageRoutes=require('./routes/messages')
+var userRoutes=require("./routes/user")
 var appRoutes = require('./routes/app');
 mongoose.connect("mongodb://localhost:27017/node-angular",{useMongoClient:true});
 
@@ -31,10 +32,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-
 app.use("/messages",messageRoutes);
-// app.use("/user","./routes/user");
+app.use("/user",userRoutes);
 app.use('/', appRoutes);
 
 
